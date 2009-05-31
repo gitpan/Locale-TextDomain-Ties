@@ -1,0 +1,16 @@
+Build.PL
+Changes
+example/01_all_ties.pl
+example/LocaleData/de/LC_MESSAGES/test.mo
+example/LocaleData/de/LC_MESSAGES/test.po
+lib/Locale/TextDomain/Ties.pm
+MANIFEST			This list of files
+README
+t/01_all_ties.t
+t/chars.t
+t/perl_critic.t
+t/pod.t
+t/pod_coverage.t
+t/prereq_build.t
+Makefile.PL
+META.yml
