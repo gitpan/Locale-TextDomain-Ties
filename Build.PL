@@ -6,7 +6,7 @@ use Module::Build;
 Module::Build->new(
     module_name       => 'Locale::TextDomain::Ties',
     license           => 'perl',
-    dist_abstract     => 'Locale::TextDomain::Ties - Tying translating subs to a hash',
+    dist_abstract     => 'Locale::TextDomain::Ties - Tying all translating subs to a hash',
     dist_author       => 'Steffen Winkler <steffenw at cpan.org>',
     dist_version_from => 'lib/Locale/TextDomain/Ties.pm',
     requires          => {
@@ -15,6 +15,7 @@ Module::Build->new(
     build_requires => {
         # Cwd                => 0, # perl dist
         'Locale::TextDomain' => '1.18',
+        'Tie::Sub'           => 0,
         'Test::Simple'       => 0, # for Test::More
         'Test::NoWarnings'   => 0,
         'Test::Deep'         => 0,

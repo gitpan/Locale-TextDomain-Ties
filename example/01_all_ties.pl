@@ -5,41 +5,58 @@ use warnings;
 
 our $VERSION = 0;
 
-use Tie::Sub;
+require Tie::Sub;
 use Locale::TextDomain 1.18 qw(test ./LocaleData/);
+# the text domain -------------^^^^
+# the path to the .mo file ---------^^^^^^^^^^^^^
 
 ## no critic (Ties)
 tie my %__x,   'Tie::Sub', sub { return __x(shift, @_) };
 tie my %__n,   'Tie::Sub', sub { return __n(shift, @_) };
 tie my %__nx,  'Tie::Sub', sub { return __nx(shift, @_) };
 tie my %__xn,  'Tie::Sub', sub { return __xn(shift, @_) };
+
 tie my %__p,   'Tie::Sub', sub { return __p(shift, shift) };
 tie my %__px,  'Tie::Sub', sub { return __px(shift, shift, @_) };
 tie my %__np,  'Tie::Sub', sub { return __np(shift, shift, @_) };
 tie my %__npx, 'Tie::Sub', sub { return __npx(shift, shift, @_) };
+
 tie my %N__,   'Tie::Sub', sub { return [N__(@_)] };
 tie my %N__n,  'Tie::Sub', sub { return [N__n(@_)] };
 tie my %N__p,  'Tie::Sub', sub { return [N__p(@_)] };
 tie my %N__np, 'Tie::Sub', sub { return [N__np(@_)] };
 ## use critic (Ties)
 
+# The construct 'shift, @_' or 'shift, shift, @_' is necessary
+# because the module Locale::TextDomain uses prototypes.
+# A simple '@_' does not work.
+
 local $ENV{LANGUAGE} = 'de_DE';
+# target language -----^^^^^^
 
 () = print <<"EOT";
-01 $__{'text1 original'}
-02 $__x{'text1 original'}
-03 $__x{[ 'text2 original {text}', text => 'is good' ]}
-04 $__n{[ 'text3 original singular', 'text3 original plural', 2 ]}
-05 $__nx{[ 'text4 original {num} singular', 'text4 original {num} plural', 1, num => 1 ]}
-06 $__xn{[ 'text4 original {num} singular', 'text4 original {num} plural', 2, num => 2 ]}
-07 $__p{[ 'special', 'ctext1 original' ]}
-08 $__px{[ 'special', 'ctext2 original {text}', text => 'is good' ]}
-09 $__np{[ 'special', 'ctext3 original singular', 'ctext3 original plural', 2, ]}
-10 $__npx{[ 'special', 'ctext4 original {num} singular', 'ctext4 original {num} plural', 2, num => 2 ]}
-11 @{ $N__{'text1 original'} }
-12 @{ $N__n{[ 'text3 original singular', 'text3 original plural', 2 ]} }
-13 @{ $N__p{[ 'special', 'ctext1 original' ]} }
-14 @{ $N__np{[ 'special', 'ctext3 original singular', 'ctext3 original plural', 2 ]} }
+11 $__{'text1 original'}
+
+21 $__x{'text1 original'} # __x without placeholders
+22 $__x{[ 'text1 original' ]} # __x without placeholders and more common extractable
+23 $__x{[ 'text2 original {text}', text => 'is good' ]}
+24 $__n{[ 'text3 original singular', 'text3 original plural', 2 ]}
+25 $__nx{[ 'text3 original singular', 'text3 original plural', 1 ]} # __nx without placeholders
+26 $__xn{[ 'text3 original singular', 'text3 original plural', 2 ]} # __xn without placeholders
+27 $__nx{[ 'text4 original {num} singular', 'text4 original {num} plural', 1, num => 1 ]}
+28 $__xn{[ 'text4 original {num} singular', 'text4 original {num} plural', 2, num => 2 ]}
+
+31 $__p{[ 'special', 'ctext1 original' ]}
+32 $__px{[ 'special', 'ctext1 original' ]} # __px without placeholders
+33 $__px{[ 'special', 'ctext2 original {text}', text => 'is good' ]}
+34 $__np{[ 'special', 'ctext3 original singular', 'ctext3 original plural', 2 ]}
+35 $__npx{[ 'special', 'ctext4 original {num} singular', 'ctext4 original {num} plural', 2, num => 2 ]}
+
+41 @{ $N__{'text1 original'} }
+42 @{ $N__{[ 'text1 original' ]} } # alternative writing
+43 @{ $N__n{[ 'text3 original singular', 'text3 original plural', 2 ]} }
+44 @{ $N__p{[ 'special', 'ctext1 original' ]} }
+45 @{ $N__np{[ 'special', 'ctext3 original singular', 'ctext3 original plural', 2 ]} }
 EOT
 
 # $Id$

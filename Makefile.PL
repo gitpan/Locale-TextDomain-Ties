@@ -9,6 +9,7 @@ WriteMakefile
           'EXE_FILES' => [],
           'VERSION_FROM' => 'lib/Locale/TextDomain/Ties.pm',
           'PREREQ_PM' => {
+                           'Tie::Sub' => 0,
                            'Test::Simple' => 0,
                            'Test::NoWarnings' => 0,
                            'Test::Deep' => 0,

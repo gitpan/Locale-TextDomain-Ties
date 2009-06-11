@@ -26,7 +26,7 @@ Locale::TextDomain::Ties - Tying all translating subs to a hash
 Tie what you want.
 Here is one example for each sub.
 
-    use Tie::Sub;
+    require Tie::Sub;
 
     tie my %__x,   'Tie::Sub', sub { return __x(shift, @_) };
     tie my %__n,   'Tie::Sub', sub { return __n(shift, @_) };
@@ -47,7 +47,7 @@ The construct 'shift, @_' or 'shift, shift, @_' is necessary
 because the module Locale::TextDomain uses prototypes.
 A simple '@_' does not work.
 
-    use Locale::TextDomain::Ties;
+    use Locale::TextDomain::Ties 1.18;
 
 %__ is already tied and exported by Locale::Text::Domain.
 It is the same like:

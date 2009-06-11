@@ -1,4 +1,9 @@
 Revision history for Perl extension Locale::TextDomain::Ties.
 
+0.02  Thu Jun 11 14:52:52 2009
+- add missing build_requires
+- better examples and pod
+- perlcritic
+
 0.01  Sun May 31 14:30:00 2009
 - initial release

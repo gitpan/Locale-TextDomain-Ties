@@ -8,7 +8,7 @@ use Test::NoWarnings;
 use Test::Deep;
 
 BEGIN {
-    use_ok('Tie::Sub');
+    require_ok('Tie::Sub');
     require_ok('Locale::TextDomain');
     Locale::TextDomain->import( qw(test ./example/LocaleData/) );
 }
