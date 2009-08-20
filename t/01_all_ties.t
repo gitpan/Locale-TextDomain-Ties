@@ -14,17 +14,17 @@ BEGIN {
 }
 
 tie my %__x,   'Tie::Sub', sub { return __x(shift, @_) };
-tie my %__n,   'Tie::Sub', sub { return __n(shift, @_) };
-tie my %__nx,  'Tie::Sub', sub { return __nx(shift, @_) };
-tie my %__xn,  'Tie::Sub', sub { return __xn(shift, @_) };
+tie my %__n,   'Tie::Sub', sub { return __n(shift, shift, shift) };
+tie my %__nx,  'Tie::Sub', sub { return __nx(shift, shift, shift, @_) };
+tie my %__xn,  'Tie::Sub', sub { return __xn(shift, shift, shift, @_) };
 tie my %__p,   'Tie::Sub', sub { return __p(shift, shift) };
 tie my %__px,  'Tie::Sub', sub { return __px(shift, shift, @_) };
-tie my %__np,  'Tie::Sub', sub { return __np(shift, shift, @_) };
-tie my %__npx, 'Tie::Sub', sub { return __npx(shift, shift, @_) };
-tie my %N__,   'Tie::Sub', sub { return [N__(@_)] };
-tie my %N__n,  'Tie::Sub', sub { return [N__n(@_)] };
-tie my %N__p,  'Tie::Sub', sub { return [N__p(@_)] };
-tie my %N__np, 'Tie::Sub', sub { return [N__np(@_)] };
+tie my %__np,  'Tie::Sub', sub { return __np(shift, shift, shift, shift) };
+tie my %__npx, 'Tie::Sub', sub { return __npx(shift, shift, shift, shift, @_) };
+tie my %N__,   'Tie::Sub', sub { return [N__(shift)] };
+tie my %N__n,  'Tie::Sub', sub { return [N__n(shift, shift, shift)] };
+tie my %N__p,  'Tie::Sub', sub { return [N__p(shift, shift)] };
+tie my %N__np, 'Tie::Sub', sub { return [N__np(shift, shift, shift, shift)] };
 
 local $ENV{LANGUAGE} = 'de_DE';
 my $translation;

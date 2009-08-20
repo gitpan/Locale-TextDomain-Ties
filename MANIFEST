@@ -2,17 +2,22 @@ Build.PL
 Changes
 example/01_all_ties.pl
 example/02_extract.pl
+example/extract.pot
 example/LocaleData/de/LC_MESSAGES/test.mo
 example/LocaleData/de/LC_MESSAGES/test.po
 lib/Locale/TextDomain/Ties.pm
-Makefile.PL
+Locale-TextDomain-Ties.bat
 MANIFEST			This list of files
+MANIFEST.SKIP
+pod2htmd.tmp
+pod2htmi.tmp
 README
 t/01_all_ties.t
+t/02_test_examples.t
 t/chars.t
 t/perl_critic.t
 t/pod.t
 t/pod_coverage.t
 t/prereq_build.t
-Ties.pm
+Makefile.PL
 META.yml

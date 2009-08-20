@@ -10,7 +10,7 @@ Module::Build->new(
     dist_author       => 'Steffen Winkler <steffenw at cpan.org>',
     dist_version_from => 'lib/Locale/TextDomain/Ties.pm',
     requires          => {
-        perl => 5.006001,
+        perl => 5.006,
     },
     build_requires => {
         # Cwd                => 0, # perl dist
@@ -19,6 +19,7 @@ Module::Build->new(
         'Test::Simple'       => 0, # for Test::More
         'Test::NoWarnings'   => 0,
         'Test::Deep'         => 0,
+        'Test::Differences'  => 0,
     },
     recommends => {
         # build

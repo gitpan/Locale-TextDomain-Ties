@@ -1,4 +1,4 @@
-Locale-TextDomain-Ties version 0.02
+Locale-TextDomain-Ties version 0.03
 ===================================
 
 Object methods like maketext don't have interpreted into strings.
